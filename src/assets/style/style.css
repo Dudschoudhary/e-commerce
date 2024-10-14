@@ -1,0 +1,15 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: 'Poppins-Black';
+    font-style: normal;
+    font-weight: normal;
+    src: url("../font/Poppins/Poppins-BlackItalic.ttf") format('ttf');
+}
+.poppins-black{
+    font-family: 'Poppins-Black';
+}
+
+  

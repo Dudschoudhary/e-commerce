@@ -16,25 +16,31 @@ interface Product {
 }
 
 interface ProductState {
-    products: Product[];
+    products: Product[];   //[Product]
+    cart: String[];
     loading: boolean;
     error: string | null;
 }
 
 const initialState: ProductState = {
     products: [],
+    cart: [],
     loading: false,
     error: null,
 };
 
 export const fetchProducts = createAsyncThunk<Product[]>('products/fetchProducts', async () => {
-    return await productApi.fetchProducts(); // Call the class method directly
+    return await productApi.fetchProducts(); 
 });
 
 const ecommerceSlice = createSlice({
     name: 'ecommerce',
     initialState,
-    reducers: {},
+    reducers: {
+        addToCart : (state, action)=>{
+            state.cart = [...state.cart, action.payload]     //
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.pending, (state) => {
@@ -51,5 +57,7 @@ const ecommerceSlice = createSlice({
             });
     }
 });
+
+export const {addToCart} = ecommerceSlice.actions;
 
 export default ecommerceSlice.reducer;

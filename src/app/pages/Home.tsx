@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         {products.map((product) => (
           <li key={product.id} className="border p-4 rounded shadow">
             <Link to={`/product/${product.id}`}>
-              <img src={product.image} alt={product.title} className="w-full h-48 object-cover mb-2" />
+              <img src={product.image} alt={product.title} className="w-full h-48 objec-fit mb-2" />
               <h3 className="font-semibold">{product.title}</h3>
               <p>${product.price}</p>
             </Link>
