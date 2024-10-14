@@ -1,12 +1,18 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../app/store'
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
 function CartItems() {
-    const cartItemsIds:any = useSelector<RootState>(state => state.products.cart)  // [1,2,3]
-    const products:any = useSelector<RootState>(state => state.products.products)   //[{item1},{item2},{item3}]
-    let cartItems:any=[];   
-    cartItemsIds.map((itemID:any)=>cartItems.push(products.find((product:any)=>product.id==itemID)))
+    const cartItemsIds: any = useSelector<RootState>(state => state.products.cart);  // [1,2,3]
+    const products: any = useSelector<RootState>(state => state.products.products);   //[{item1},{item2},{item3}]
+    let cartItems: any = [];   
+
+    cartItemsIds.forEach((itemID: any) => 
+        cartItems.push(products.find((product: any) => product.id === itemID))
+    );
+
+    // Calculate total price
+    const total = cartItems.reduce((acc: number, item: any) => acc + (item ? item.price : 0), 0);
+
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
@@ -19,14 +25,16 @@ function CartItems() {
                             <span className="font-medium">{item.title}</span>
                             <span className="text-gray-600">${item.price.toFixed(2)}</span>
                         </li>
-                        
                     ))}
                 </ul>
             )}
+            {cartItems.length > 0 && (
+                <div className="mt-4 font-bold text-end">
+                    Total: ${total.toFixed(2)}
+                </div>
+            )}
         </div>
-    )
+    );
 }
 
-export default CartItems
-
-//cartItemsIds.map((item) => cartItmes.push(products.find((product) => item === product.id)))
+export default CartItems;
