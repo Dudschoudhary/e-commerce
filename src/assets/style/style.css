@@ -1,15 +1,28 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
 @font-face {
-    font-family: 'Poppins-Black';
+    font-family: 'Poppins-ExtraLight';
     font-style: normal;
     font-weight: normal;
-    src: url("../font/Poppins/Poppins-BlackItalic.ttf") format('ttf');
-}
-.poppins-black{
-    font-family: 'Poppins-Black';
+    src: url("../font/Poppins/Poppins-ExtraLight.ttf");
 }
 
-  
+@font-face {
+    font-family: 'Poppins-Medium';
+    font-style: normal;
+    font-weight: 200;
+    src: url("../font/Poppins/Poppins-Light.ttf");
+}
+
+.poppins-black {
+    font-family: 'Poppins-ExtraLight';
+
+}
+
+.Poppins-Medium {
+    font-family: 'Poppins-Medium';
+
+}

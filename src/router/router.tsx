@@ -7,6 +7,7 @@ import mens from "../pages/categary/mens";
 import Jewelery from "../pages/categary/Jewellery";
 import Electronics from "../pages/categary/Electronics";
 import Women from "../pages/categary/Women";
+import SearchProduct from "../pages/categary/SearchProduct";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/category/women",
         Component: Women
+      },
+      {
+        path:"/search/:productName",
+        Component: SearchProduct
       }
     ],
   },

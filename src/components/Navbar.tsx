@@ -8,7 +8,7 @@ const Navbar : React.FC = () => {
   const cartItems:any = useSelector<RootState>(state=>state.products.cart)
   console.log(cartItems)
   return (
-    <nav className='bg-[#958936] w-full h-14 flex justify-around items-center poppins-black'>
+    <nav className='bg-[#a1a088] w-full h-14 flex justify-around items-center hello poppins-black'>
         <Link to="/"><h1 className='text-white text-lg  '>E-commerce</h1></Link>
         <ul className="flex  text-white gap-3 justify-center items-center">
           <li> <Link to="category/mens">Men's</Link></li>
@@ -16,7 +16,7 @@ const Navbar : React.FC = () => {
           <li><Link to="category/electronics">Electronics</Link></li>
           <li><Link to="category/women">Women's</Link></li>
         </ul>
-        <Link to="/cart-items" className="relative bg-white rounded-full flex items-center h-10 w-10 justify-center "><BsFillCartFill/> <span className="absolute -top-1.5 text-red-600">{cartItems.length}</span></Link>
+        <Link to="/cart-items" className="relative flex items-center justify-center "><BsFillCartFill className="text-white text-2xl"/> <span className="absolute -top-1 left-2 border w-5 h-5 flex justify-center items-center rounded-full text-white bg-red-600">{cartItems.length}</span><span className="text-white text-xl ms-2">cart</span> </Link>
     </nav>
   )
 }

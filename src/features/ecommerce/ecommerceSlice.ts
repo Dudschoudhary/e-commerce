@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import productApi from '../../app/api/productApi'; // Update the path accordingly
 
-interface Product {
+export interface Product {
     id: number;
     title: string;
     price: number;
@@ -17,7 +17,7 @@ interface Product {
 
 interface ProductState {
     products: Product[];   //[Product]
-    cart: String[];
+    cart: Product[];
     loading: boolean;
     error: string | null;
 }
@@ -29,6 +29,7 @@ const initialState: ProductState = {
     error: null,
 };
 
+
 export const fetchProducts = createAsyncThunk<Product[]>('products/fetchProducts', async () => {
     return await productApi.fetchProducts(); 
 });
@@ -38,7 +39,16 @@ const ecommerceSlice = createSlice({
     initialState,
     reducers: {
         addToCart : (state, action)=>{
-            state.cart = [...state.cart, action.payload]     //
+            const itemExists = state.cart.find(item => item.id === action.payload.id);
+            console.log("Hello Duds",action.payload.id);
+            
+            if (!itemExists) {
+                state.cart.push(action.payload); // Add the new product to the cart
+            } else {
+                // Optionally provide feedback
+                console.log('Item already in cart:', action.payload);
+            }
+        
         }
     },
     extraReducers: (builder) => {
