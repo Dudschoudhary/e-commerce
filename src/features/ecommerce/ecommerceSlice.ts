@@ -1,6 +1,6 @@
 // src/slices/ecommerceSlice.ts
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import productApi from '../../app/api/productApi'; // Update the path accordingly
+import productApi from '../../api/productApi'; // Update the path accordingly
 
 export interface Product {
     id: number;
@@ -13,6 +13,7 @@ export interface Product {
         rate: number;
         count: number;
     };
+    quantity: number; 
 }
 
 interface ProductState {
@@ -38,18 +39,21 @@ const ecommerceSlice = createSlice({
     name: 'ecommerce',
     initialState,
     reducers: {
-        addToCart : (state, action)=>{
-            const itemExists = state.cart.find(item => item.id === action.payload.id);
-            console.log("Hello Duds",action.payload.id);
-            
-            if (!itemExists) {
-                state.cart.push(action.payload); // Add the new product to the cart
+        addToCart: (state, action) => {
+            const { product, count } = action.payload;
+            const itemExists = state.cart.find(item => item.id === product.id);
+
+            if (itemExists) {
+                itemExists.quantity = count;
             } else {
-                // Optionally provide feedback
-                console.log('Item already in cart:', action.payload);
+                state.cart.push({ ...product, quantity: count }); 
             }
-        
-        }
+        },
+        removeFromCart: (state, action) => {
+            const itemId = action.payload; 
+            state.cart = state.cart.filter(item => item.id !== itemId);
+            console.log('Item removed from cart:',action.payload);
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -68,6 +72,6 @@ const ecommerceSlice = createSlice({
     }
 });
 
-export const {addToCart} = ecommerceSlice.actions;
+export const {addToCart,removeFromCart} = ecommerceSlice.actions;
 
 export default ecommerceSlice.reducer;

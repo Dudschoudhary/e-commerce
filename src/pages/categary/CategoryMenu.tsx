@@ -1,24 +1,22 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../app/store'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 
 const mens = () => {
   const products:any = useSelector<RootState>(state => state.products.products) 
-  console.log('products', products)
-
-  const category:any= products.filter((item:any)=>item.category === "men's clothing")
-  console.log(category)
+  const {categoryName} = useParams();
+  // const category:any= products.filter((item:any)=>item.category === "men's clothing")
+  const filtered = products.filter((product)=>product.category.replace(/'/g,"").toLowerCase() === categoryName?.toLowerCase())
   
 return (
     <>
     <div className='p-4'>
-    <h2 className="text-2xl mb-4">Men's Clothing</h2>
+    <h2 className="text-2xl mb-4">{categoryName}</h2>
 
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {category.map((product:any) => (
+        {filtered.map((product:any) => (
           <li key={product.id}   className="border p-4 rounded shadow">
             <Link to={`/product/${product.id}`}>
               <img src={product.image} alt={product.title} className="w-full h-48 object-contain mb-2" />
@@ -28,6 +26,7 @@ return (
           </li>
         ))}
       </ul>
+      
       </div>
     </>
   )

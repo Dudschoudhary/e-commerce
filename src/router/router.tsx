@@ -3,10 +3,7 @@ import Layout from "../Layout";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import CartItems from "../pages/CartItems";
-import mens from "../pages/categary/mens";
-import Jewelery from "../pages/categary/Jewellery";
-import Electronics from "../pages/categary/Electronics";
-import Women from "../pages/categary/Women";
+import mens from "../pages/categary/CategoryMenu";
 import SearchProduct from "../pages/categary/SearchProduct";
 
 const router = createBrowserRouter([
@@ -27,20 +24,8 @@ const router = createBrowserRouter([
         Component: Product,
       },
       {
-        path: "/category/mens",
+        path: "/category/:categoryName",
         Component: mens
-      },
-      {
-        path: "/category/jewelery",
-        Component: Jewelery
-      },
-      {
-        path: "/category/electronics",
-        Component: Electronics
-      },
-      {
-        path: "/category/women",
-        Component: Women
       },
       {
         path:"/search/:productName",
