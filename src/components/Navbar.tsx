@@ -6,7 +6,6 @@ import { RootState } from "../app/store";
 
 const Navbar : React.FC = () => {
   const cartItems:any = useSelector<RootState>(state=>state.products.cart)
-  console.log(cartItems)
   return (
     <nav className='bg-[#a1a088] w-full h-14 flex justify-around items-center hello poppins-black'>
         <Link to="/"><h1 className='text-white text-lg  '>E-commerce</h1></Link>

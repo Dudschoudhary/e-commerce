@@ -52,7 +52,6 @@ const ecommerceSlice = createSlice({
         removeFromCart: (state, action) => {
             const itemId = action.payload; 
             state.cart = state.cart.filter(item => item.id !== itemId);
-            console.log('Item removed from cart:',action.payload);
         },
     },
     extraReducers: (builder) => {
