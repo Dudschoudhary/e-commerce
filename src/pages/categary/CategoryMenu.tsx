@@ -9,6 +9,8 @@ const mens = () => {
   const {categoryName} = useParams();
   // const category:any= products.filter((item:any)=>item.category === "men's clothing")
   const filtered = products.filter((product)=>product.category.replace(/'/g,"").toLowerCase() === categoryName?.toLowerCase())
+  console.log("Duds");
+  
   
 return (
     <>
