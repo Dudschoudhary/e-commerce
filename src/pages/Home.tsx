@@ -60,10 +60,10 @@ const Home: React.FC = () => {
         <ul className="border border-gray-300 rounded bg-white absolute z-10 w-[94%] m-auto">
           {suggestions.map((product) => (
             <li key={product.id} className="p-2 hover:bg-gray-200 cursor-pointer"
-                onClick={() => {
-                  setSearch(product.title);
-                  navigation(`/product/${product.id}`);
-                }}>
+              onClick={() => {
+                setSearch(product.title);
+                navigation(`/product/${product.id}`);
+              }}>
               {product.title}
             </li>
           ))}

@@ -7,12 +7,12 @@ export interface Product {
     price: number;
     description: string;
     category: string;
-    image: string;  
+    image: string;
     rating: {
         rate: number;
         count: number;
     };
-    quantity: number; 
+    quantity: number;
 }
 
 interface ProductState {
@@ -31,7 +31,7 @@ const initialState: ProductState = {
 
 
 export const fetchProducts = createAsyncThunk<Product[]>('products/fetchProducts', async () => {
-    return await productApi.fetchProducts(); 
+    return await productApi.fetchProducts();
 });
 
 
@@ -46,12 +46,12 @@ const ecommerceSlice = createSlice({
             if (itemExists) {
                 itemExists.quantity = count;
             } else {
-                state.cart.push({ ...product, quantity: count }); 
+                state.cart.push({ ...product, quantity: count });
 
             }
         },
         removeFromCart: (state, action) => {
-            const itemId = action.payload; 
+            const itemId = action.payload;
             state.cart = state.cart.filter(item => item.id !== itemId);
         },
     },
@@ -72,6 +72,6 @@ const ecommerceSlice = createSlice({
     }
 });
 
-export const {addToCart,removeFromCart} = ecommerceSlice.actions;
+export const { addToCart, removeFromCart } = ecommerceSlice.actions;
 
 export default ecommerceSlice.reducer;
