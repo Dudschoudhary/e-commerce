@@ -1,6 +1,5 @@
-// src/slices/ecommerceSlice.ts
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import productApi from '../../api/productApi'; // Update the path accordingly
+import productApi from '../../api/productApi';
 
 export interface Product {
     id: number;
@@ -35,6 +34,7 @@ export const fetchProducts = createAsyncThunk<Product[]>('products/fetchProducts
     return await productApi.fetchProducts(); 
 });
 
+
 const ecommerceSlice = createSlice({
     name: 'ecommerce',
     initialState,
@@ -47,6 +47,7 @@ const ecommerceSlice = createSlice({
                 itemExists.quantity = count;
             } else {
                 state.cart.push({ ...product, quantity: count }); 
+
             }
         },
         removeFromCart: (state, action) => {
