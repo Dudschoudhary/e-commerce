@@ -52,7 +52,7 @@ const Home: React.FC = () => {
           placeholder='Search product'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className='form-control border w-[93%] m-auto outline-none px-4 py-1 my-4 rounded-s bg-gray-50'
+          className='form-control border w-[65%] lg:w-[93%] m-auto outline-none px-4 py-1 my-4 rounded-s bg-gray-50'
         />
         <button className='bg-sky-600 border py-1 px-4 rounded-e text-white'>Search</button>
       </form>
@@ -64,7 +64,9 @@ const Home: React.FC = () => {
                 setSearch(product.title);
                 navigation(`/product/${product.id}`);
               }}>
-              {product.title}
+              <span className='text-sm sm:text-lg'>
+                {product.title}
+              </span>
             </li>
           ))}
         </ul>
