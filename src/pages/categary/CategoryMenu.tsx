@@ -20,7 +20,7 @@ const Mens = () => {
   );
 
   // Further filter the already filtered products by search term
-  const filteredProducts = filteredByCategory.filter(product => 
+  const filteredProducts = filteredByCategory.filter((product:any) => 
     product.title.toLowerCase().includes(search.toLowerCase())
   );
 
